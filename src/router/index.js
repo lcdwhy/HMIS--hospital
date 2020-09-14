@@ -17,6 +17,9 @@ const routes = [
   {
     path: '/home',
     component: () => import('../views/home/Home.vue'),
+    meta: {
+      requireAuth: true  //进入该路由要进行登录
+    },
     children: [
       {
         //重定向到首页
@@ -27,7 +30,7 @@ const routes = [
       {
         //首页
         path: 'fristpage',
-        component: () => import('../components/item/FristPage.vue')
+        component: () => import('../components/item/FristPage.vue'),
       },
       {
         //用户列表
@@ -120,13 +123,24 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import('../views/register/Register.vue')
+  },
+  {
+    path: '*',
+    component: () =>import('../components/404/404.vue')
   }
 ]
+
+
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
+
+
+
+
+
 
 export default router

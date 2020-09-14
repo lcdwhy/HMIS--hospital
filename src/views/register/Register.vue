@@ -118,9 +118,9 @@ export default {
         this.$refs.ruleForm.validate(async valid => {
           if (valid) {
             let result =await RegisterApi({...this.ruleForm})
-            if(result == "账号已存在"){
-              alert(result)
-            }else if(result == "注册成功"){
+            if(result.data == "账号已存在"){
+              alert(result.data)
+            }else if(result.data == "注册成功"){
               alert("注册成功！")
               this.$router.push('/login')
             }

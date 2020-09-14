@@ -219,8 +219,8 @@ export default {
       // 请求第page页的用户列表信息的方法
       async handleUserList(page){
        let result = await UserListApi({page});
-       this.total = result.total
-       this.tableData = result.tableData
+       this.total = result.data.total
+       this.tableData = result.data.tableData
       },
       // 删除指定的用户
       async deleteUser(val){

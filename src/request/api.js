@@ -1,6 +1,5 @@
 import request from './request'
 
-
 // 用户登录
 export const LoginApi = (params) => request.post('/api/login', params);
 // 用户退出登录

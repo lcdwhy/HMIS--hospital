@@ -38,14 +38,14 @@ export default {
         })
       },
      async btn(){
-       let result =  await AdminApi();
-       console.log(result)
-       if(result == "未登录"){
-         alert("用户未登录，请先登录!")
-         this.$router.push('/login')
-       }else{
-         console.log("登录成功！")
-       }
+      //  let result =  await AdminApi();
+      //  console.log(result)
+      //  if(result == "未登录"){
+      //    alert("用户未登录，请先登录!")
+      //    this.$router.push('/login')
+      //  }else{
+      //    console.log("登录成功！")
+      //  }
       },
     },
     created(){

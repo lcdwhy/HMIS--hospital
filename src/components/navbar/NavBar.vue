@@ -43,7 +43,8 @@ export default {
         if(command == 'loginout'){
           //清除用户信息并退出
           let result = await LoginOutApi();
-          alert(result);
+          // alert(result.data);
+          this.$store.commit("RemoveAccount");
           this.$router.push('/login');
         }
           // 修改密码

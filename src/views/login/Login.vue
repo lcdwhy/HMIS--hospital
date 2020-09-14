@@ -40,11 +40,14 @@ export default {
               username: this.ruleForm.account,
               password: this.ruleForm.pwd
             })
-             if(res == "登录成功"){
-                console.log(res)
-                this.$router.push('/')
-              }else{
+            console.log(res)
+             if(res.code == 400 && res.data == "登录失败"){
                 alert("请输入正确的账号和密码！")
+              }else if(res.code ==200){
+                let token = res.data.token;
+                let username = res.data.username;
+                this.$store.commit("AddAccount",{token,username})
+                this.$router.push('/')
               }
           }else{
             alert("有未输入项！")
