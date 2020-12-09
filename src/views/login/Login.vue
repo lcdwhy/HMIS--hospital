@@ -44,9 +44,12 @@ export default {
              if(res.code == 400 && res.data == "登录失败"){
                 alert("请输入正确的账号和密码！")
               }else if(res.code ==200){
+                console.log(res.data)
                 let token = res.data.token;
                 let username = res.data.username;
-                this.$store.commit("AddAccount",{token,username})
+                let imgUrl = res.data.imgUrl
+                console.log(imgUrl)
+                this.$store.commit("AddAccount",{token,username,imgUrl})
                 this.$router.push('/')
               }
           }else{

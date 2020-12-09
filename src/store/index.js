@@ -10,7 +10,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     UserName: '',
-    token: ''
+    token: '',
+    UserImage:''
   },
   getters,
   mutations,

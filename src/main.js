@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 router.beforeEach((to, form, next) => {
   store.state.token = sessionStorage.getItem("token");
   store.state.UserName = sessionStorage.getItem("UserName");
+  store.state.UserImage = sessionStorage.getItem("UserImage");
   if(to.matched[0].meta.requireAuth === true){
     if(store.state.token !== null){
       next()

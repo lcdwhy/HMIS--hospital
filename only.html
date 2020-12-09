@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        body,p,input,ul,li,div{
+            margin: 0;
+            padding: 0;
+        }
+        #calc{
+            position: relative;
+            border-radius: 10px;
+            margin: 0 auto;
+            width: 400px;
+            height: 500px;
+            background: #ccc;
+        }
+        p{
+            text-align: center;
+        }
+        .f-text{
+            padding-top: 10px;
+           box-sizing: border-box;
+           border: 0;
+            margin: 0 auto;
+            font-size: 30px;
+             
+            text-align: right;
+            width: 400px;
+            height: 60px;
+        }
+        ul{
+            list-style-type: none;
+             
+        }
+        ul li{
+             
+            float: left;
+            width: 90px;
+            height: 50px;
+            margin: 25px 10px 0 0;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        ul li a{
+            margin: 0 auto;
+            display: block;
+            width: 60px;
+            height: 60px;
+            line-height: 50px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: white;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background: black;
+        }
+        ul li a:hover{
+            cursor: pointer;
+            color: saddlebrown;
+        }
+        #formula{
+            margin-left: -400px;
+            box-sizing: border-box;
+            border: 0;
+            margin-top: -60px;
+            position: absolute;
+            width: 400px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+   <div id="calc">
+       <p>简易计算器</p>
+        <input class="f-text" type="text" readonly="readonly" maxlength="9" value="0" />
+         
+            <ul>
+                <li class="btn-1"><a href="javascript:void(0)">c</a></li>
+                <li class="btn-1"><a href="javascript:void(0)">%</a></li>
+                <li class="btn-1"><a href="javascript:void(0)">/</a></li>
+                <li class="btn-1"><a href="javascript:void(0)">x</a></li>
+                <li><a href="javascript:void(0)">7</a></li>
+                <li><a href="javascript:void(0)">8</a></li>
+                <li><a href="javascript:void(0)">9</a></li>
+                <li class="btn-1"><a href="javascript:void(0)">-</a></li>
+                <li><a href="javascript:void(0)">4</a></li>
+                <li><a href="javascript:void(0)">5</a></li>
+                <li><a href="javascript:void(0)">6</a></li>
+                <li class="btn-1"><a href="javascript:void(0)">+</a></li>
+                <li><a href="javascript:void(0)">1</a></li>
+                <li><a href="javascript:void(0)">2</a></li>
+                <li><a href="javascript:void(0)">3</a></li>
+                <li class="btn-2"><a href="javascript:void(0)">=</a></li>
+                <li class="btn-3"><a href="javascript:void(0)">0</a></li>
+                <li><a href="javascript:void(0)">.</a></li>
+                <li><a href="javascript:void(0)">(</a></li>
+                <li><a href="javascript:void(0)">)</a></li>
+            </ul>
+        <input id="formula" type="text" readonly="readonly" value=""/>
+   </div>
+</body>
+</html>
+<script>
+    var calc=document.getElementById("calc");
+    var a=calc.getElementsByTagName("a");
+    var input=calc.getElementsByTagName("input")[0];
+    var formula=document.getElementById("formula");
+    var s=false;
+    var i;
+     
+     
+    for(i=0;i<a.length;i++){
+        a[i].onfocus=function(){
+            this.blur()
+        };
+        a[i].onclick=function(){
+            switch(this.innerHTML){
+                case "c":
+                input.value=0;
+                formula.value="";
+                break;
+                case "%":
+                count("%")
+                break;
+                case "x":
+                count("*")
+                break;
+                case "-":
+                count("-")
+                break;
+                case "+":
+                count("+")
+                break;
+                case "(":
+                count("(")
+                break;
+                case ")":
+                count(")")
+                break;
+                case "=":
+                s || (formula.value+=input.value);
+                         
+                input.value=eval(formula.value.replace(/\%\/\*\-\+/,''));//输入的值进行运算后得到的值
+                
+                input.value=input.value.substr(0,10).replace("NaN",0);//计算输入变量和输出结果最多前10位，如果不是数字返回0
+               
+                s=true;
+                break;
+                case ".":
+                if(input.value.search(/[\.\%\/\*\-\+]/)!=-1)//输入的值为非运算符时
+                 
+                break;
+                default:
+                s && (input.value=0,formula.value="",s=false);
+                input.value.length<10 &&(input.value=(input.value+this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/,"$1"));
+         
+ 
+            }
+        }
+    }
+    function count(d){
+         
+       var reg = /[\%\/\*\-\+]$/;
+        if(s)
+        {   //错误处理
+            formula.value=input.value + d;
+            input.value=d;
+            s=false;
+        }
+        else
+        {   //正确处理
+            reg.test(input.value) || (formula.value+=input.value);
+            console.log('3',/[\%\/\*\-\+]$/.test(input.value));
+            
+            input.value=d;
+            console.log("n",input.value);
+            reg.test(formula.value) || (formula.value+=input.value);
+            formula.value=formula.value.slice(-1)!=d ? formula.value.replace(/.$/,d):formula.value
+       }
+    }
+</script>

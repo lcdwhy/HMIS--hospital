@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Form, FormItem, Input, MenuItem, Menu, Row, Col, Dropdown, DropdownMenu, DropdownItem, PageHeader, Submenu, MenuItemGroup, Divider, Avatar, Upload, Table, TableColumn, Pagination,Breadcrumb,BreadcrumbItem} from 'element-ui'
+import { Button, Form, FormItem, Input, MenuItem, Menu, Row, Col, Dropdown, DropdownMenu, DropdownItem, PageHeader, Submenu, MenuItemGroup, Divider, Avatar, Upload, Table, TableColumn, Pagination,Breadcrumb,BreadcrumbItem,Card} from 'element-ui'
 
 Vue.use(Button)
 .use(Form)
@@ -23,3 +23,4 @@ Vue.use(Button)
 .use(Pagination)
 .use(Breadcrumb)
 .use(BreadcrumbItem)
+.use(Card)

@@ -9,6 +9,7 @@
                 name="file"
                 class="upload-demo"
                 action="/api/admin/info/upload"
+                :data="{username:info.username}"
                 :on-success="handleSuccess"
                 :on-error="handleError"
                 :show-file-list="false"

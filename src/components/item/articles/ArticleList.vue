@@ -72,6 +72,7 @@
 import BackBar from '../../backbar/BackBar'
 import { MessageBox, Message } from 'element-ui';
 import {ArticleListApi, ArticleDeleteApi} from '../../../request/api'
+
 export default {
   inject:["reload"],
   components:{
